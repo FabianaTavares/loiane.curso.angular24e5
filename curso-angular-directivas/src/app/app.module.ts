@@ -6,12 +6,15 @@ import { HttpModule } from '@angular/http';
 import { AppComponent } from './app.component';
 import { DiretivaNgifComponent } from './diretiva-ngif/diretiva-ngif.component';
 import { TesteComponent } from './teste/teste.component';
+import { AngularCliLibsExternasComponent } from './angular-cli-libs-externas/angular-cli-libs-externas.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     DiretivaNgifComponent,
-    TesteComponent
+    TesteComponent,
+    AngularCliLibsExternasComponent,
+    AngularCliLibsExternasComponent
   ],
   imports: [
     BrowserModule,
