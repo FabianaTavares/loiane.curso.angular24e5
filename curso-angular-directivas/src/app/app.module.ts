@@ -14,7 +14,7 @@ import { DiretivaNgcontentComponent } from './diretiva-ngcontent/diretiva-ngcont
 import { FundoAmareloDirective } from './shared/fundo-amarelo.directive';
 import { DiretivasCustomizadasComponent } from './diretivas-customizadas/diretivas-customizadas.component';
 import { CursosComponent } from './servicos/cursos/cursos.component';
-
+import { CursosService } from './servicos/cursos/cursos.service';
 
 @NgModule({
   declarations: [
@@ -36,7 +36,9 @@ import { CursosComponent } from './servicos/cursos/cursos.component';
     FormsModule,
     HttpModule
   ],
-  providers: [],
+  providers: [
+    CursosService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
