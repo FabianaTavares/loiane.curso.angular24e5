@@ -8,6 +8,7 @@ import { DiretivaNgifComponent } from './diretiva-ngif/diretiva-ngif.component';
 import { TesteComponent } from './teste/teste.component';
 import { AngularCliLibsExternasComponent } from './angular-cli-libs-externas/angular-cli-libs-externas.component';
 import { DiretivaNgForComponent } from './diretiva-ng-for/diretiva-ng-for.component';
+import { DiretivaNgclassComponent } from './diretiva-ngclass/diretiva-ngclass.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { DiretivaNgForComponent } from './diretiva-ng-for/diretiva-ng-for.compon
     TesteComponent,
     AngularCliLibsExternasComponent,
     AngularCliLibsExternasComponent,
-    DiretivaNgForComponent
+    DiretivaNgForComponent,
+    DiretivaNgclassComponent
   ],
   imports: [
     BrowserModule,
