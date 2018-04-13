@@ -13,6 +13,8 @@ import { DiretivaNgstyleComponent } from './diretiva-ngstyle/diretiva-ngstyle.co
 import { DiretivaNgcontentComponent } from './diretiva-ngcontent/diretiva-ngcontent.component';
 import { FundoAmareloDirective } from './shared/fundo-amarelo.directive';
 import { DiretivasCustomizadasComponent } from './diretivas-customizadas/diretivas-customizadas.component';
+import { CursosComponent } from './servicos/cursos/cursos.component';
+
 
 @NgModule({
   declarations: [
@@ -26,7 +28,8 @@ import { DiretivasCustomizadasComponent } from './diretivas-customizadas/diretiv
     DiretivaNgstyleComponent,
     DiretivaNgcontentComponent,
     FundoAmareloDirective,
-    DiretivasCustomizadasComponent
+    DiretivasCustomizadasComponent,
+    CursosComponent
   ],
   imports: [
     BrowserModule,
