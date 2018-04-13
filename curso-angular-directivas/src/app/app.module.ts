@@ -10,6 +10,7 @@ import { AngularCliLibsExternasComponent } from './angular-cli-libs-externas/ang
 import { DiretivaNgForComponent } from './diretiva-ng-for/diretiva-ng-for.component';
 import { DiretivaNgclassComponent } from './diretiva-ngclass/diretiva-ngclass.component';
 import { DiretivaNgstyleComponent } from './diretiva-ngstyle/diretiva-ngstyle.component';
+import { DiretivaNgcontentComponent } from './diretiva-ngcontent/diretiva-ngcontent.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { DiretivaNgstyleComponent } from './diretiva-ngstyle/diretiva-ngstyle.co
     AngularCliLibsExternasComponent,
     DiretivaNgForComponent,
     DiretivaNgclassComponent,
-    DiretivaNgstyleComponent
+    DiretivaNgstyleComponent,
+    DiretivaNgcontentComponent
   ],
   imports: [
     BrowserModule,
