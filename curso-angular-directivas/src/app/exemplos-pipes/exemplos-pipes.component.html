@@ -13,3 +13,17 @@
 
 <p>Livro {{ livro | json }}</p>
 <!-- json é bom pra debugar =) -->
+
+<input type="text" [(ngModel)]="filtro">
+
+<br>
+<input type="text" #novoValor>
+<button (click)="addCurso(novoValor.value)">Add Curso</button>
+
+<h5>Maneira correta de usar filtro nos projetos</h5>
+
+<ul>
+    <li *ngFor="let liv of obterCursos()" >
+        {{ liv }}
+    </li>
+</ul>
