@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, LOCALE_ID } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
@@ -19,6 +19,7 @@ import { CriarCursosComponent } from './servicos/criar-cursos/criar-cursos.compo
 import { LogService } from './shared/log.service';
 import { PipesComponent } from './pipes/pipes.component';
 import { ExemplosPipesComponent } from './exemplos-pipes/exemplos-pipes.component';
+import { SettingsService } from './settings.service';
 
 @NgModule({
   declarations: [
@@ -45,7 +46,13 @@ import { ExemplosPipesComponent } from './exemplos-pipes/exemplos-pipes.componen
   ],
   providers: [
     CursosService,
-    LogService
+    LogService,
+    SettingsService,
+    {
+      provide: LOCALE_ID,
+      deps: [SettingsService],
+      useFactory: (settingsService) => settingsService.getLocale()
+    }
   ],
   bootstrap: [AppComponent]
 })
