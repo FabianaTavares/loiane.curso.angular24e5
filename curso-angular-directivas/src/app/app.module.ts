@@ -15,6 +15,7 @@ import { FundoAmareloDirective } from './shared/fundo-amarelo.directive';
 import { DiretivasCustomizadasComponent } from './diretivas-customizadas/diretivas-customizadas.component';
 import { CursosComponent } from './servicos/cursos/cursos.component';
 import { CursosService } from './servicos/cursos/cursos.service';
+import { CriarCursosComponent } from './servicos/criar-cursos/criar-cursos.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { CursosService } from './servicos/cursos/cursos.service';
     DiretivaNgcontentComponent,
     FundoAmareloDirective,
     DiretivasCustomizadasComponent,
-    CursosComponent
+    CursosComponent,
+    CriarCursosComponent
   ],
   imports: [
     BrowserModule,
