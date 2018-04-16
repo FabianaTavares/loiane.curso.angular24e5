@@ -13,6 +13,7 @@ import { LoginComponent } from './login/login.component';
 //import { CursoNaoEncontradoComponent } from './cursos/curso-nao-encontrado/curso-nao-encontrado.component';
 import { CursosModule } from './cursos/cursos.module';
 import { AppRoutingModule } from './app.routing.model';
+import { AlunosModule } from './alunos/alunos.module';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { AppRoutingModule } from './app.routing.model';
     FormsModule,
     HttpModule,
     CursosModule,
+    AlunosModule,
    AppRoutingModule,
   ],
   providers: [
