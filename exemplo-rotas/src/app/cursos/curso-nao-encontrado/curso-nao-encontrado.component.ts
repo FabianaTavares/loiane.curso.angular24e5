@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
+import { CursosService } from '../cursos.service';
+
 @Component({
   selector: 'app-curso-nao-encontrado',
   templateUrl: './curso-nao-encontrado.component.html',
