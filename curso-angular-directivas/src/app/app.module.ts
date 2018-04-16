@@ -17,6 +17,8 @@ import { CursosComponent } from './servicos/cursos/cursos.component';
 import { CursosService } from './servicos/cursos/cursos.service';
 import { CriarCursosComponent } from './servicos/criar-cursos/criar-cursos.component';
 import { LogService } from './shared/log.service';
+import { PipesComponent } from './pipes/pipes.component';
+import { ExemplosPipesComponent } from './exemplos-pipes/exemplos-pipes.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +34,9 @@ import { LogService } from './shared/log.service';
     FundoAmareloDirective,
     DiretivasCustomizadasComponent,
     CursosComponent,
-    CriarCursosComponent
+    CriarCursosComponent,
+    PipesComponent,
+    ExemplosPipesComponent
   ],
   imports: [
     BrowserModule,

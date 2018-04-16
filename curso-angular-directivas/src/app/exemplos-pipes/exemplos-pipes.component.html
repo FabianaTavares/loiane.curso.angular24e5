@@ -1,0 +1,15 @@
+<h5>Exemplos de Pipes</h5>
+
+<!-- Um pipe transforma um valor e podemos mostrar o valor dentro de um tambplete  -->
+
+<p>Titulo: {{ livro.titulo | uppercase }}</p>
+<p>Estrelas: {{ livro.rating | number:'2.1-2' }}</p>
+<p>Paginas {{ livro.numeroPaginas | number }}</p>
+<p>Preco {{ livro.preco | currency:'BRL':true }}</p>
+<p>Data Lancamento {{ livro.dataLancamento | date:'dd-MM-yyyy' }}</p>
+<p>Url: {{ livro.url }}</p>
+
+<br>
+
+<p>Livro {{ livro | json }}</p>
+<!-- json é bom pra debugar =) -->
