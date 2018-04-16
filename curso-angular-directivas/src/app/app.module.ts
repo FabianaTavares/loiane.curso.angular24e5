@@ -16,6 +16,7 @@ import { DiretivasCustomizadasComponent } from './diretivas-customizadas/diretiv
 import { CursosComponent } from './servicos/cursos/cursos.component';
 import { CursosService } from './servicos/cursos/cursos.service';
 import { CriarCursosComponent } from './servicos/criar-cursos/criar-cursos.component';
+import { LogService } from './shared/log.service';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { CriarCursosComponent } from './servicos/criar-cursos/criar-cursos.compo
     HttpModule
   ],
   providers: [
-    CursosService
+    CursosService,
+    LogService
   ],
   bootstrap: [AppComponent]
 })
