@@ -1,3 +1,4 @@
+import { AuthGuard } from './guards/auth.guard';
 import { NgModule } from '@angular/core';
 import { NgModel } from "@angular/forms";
 //import { NgModuleResolver } from "@angular/compiler";
@@ -15,12 +16,16 @@ import { LoginComponent } from './login/login.component';
 
 
 const appRoutes: Routes = [
-    { path: 'cursos', loadChildren: 'app/cursos/cursos.module#CursosModule' }, //lazy loading aula 62
+    { path: 'cursos', 
+        loadChildren: 'app/cursos/cursos.module#CursosModule',
+        canActivate: [AuthGuard]
+    }, //lazy loading aula 62
     //{ path: 'naoEncontrado', component: CursoNaoEncontradoComponent },
     //{ path: 'cursos', component: CursosComponent },
     //{ path: 'curso/:id', component: CursoDetalheComponent},
     { path: 'login', component: LoginComponent},
-    { path: '', component: HomeComponent },
+    { path: '', component: HomeComponent,
+        canActivate: [AuthGuard] },
     { path: '', redirectTo: '/home', pathMatch: 'full' },
     //{ path: '**', component: PaginaNaoEncontradaComponent } //, canActivate: [AuthGuard]}
 
