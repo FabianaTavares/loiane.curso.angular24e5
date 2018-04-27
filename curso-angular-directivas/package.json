@@ -23,6 +23,7 @@
     "angular2-materialize": "^15.1.10",
     "bootstrap": "^4.1.0",
     "core-js": "^2.4.1",
+    "hoek": "^5.0.3",
     "jquery": "^3.3.1",
     "materialize-css": "^0.100.2",
     "popper.js": "^1.14.3",
