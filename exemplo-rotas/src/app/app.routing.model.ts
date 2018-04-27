@@ -25,7 +25,7 @@ const appRoutes: Routes = [
         loadChildren: 'app/alunos/alunos.module#AlunosModule',
         canActivate: [AuthGuard],
         //canActivateChild: [AlunosGuard]
-        canLoad: [AuthGuard]
+        //canLoad: [AuthGuard]
     },
     //{ path: 'cursos', component: CursosComponent },
     //{ path: 'curso/:id', component: CursoDetalheComponent },
