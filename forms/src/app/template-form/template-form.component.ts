@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Http } from '@angular/http';
+import { HttpClient } from '@angular/common/http';
 import 'rxjs/add/operator/map';
 
 import { ConsultaCepService } from './../shared/services/consulta-cep.service';
@@ -22,14 +22,14 @@ export class TemplateFormComponent implements OnInit {
     //form.value
     //console.log(this.usuario);
     this.http.post('https://httpbin.org/post', JSON.stringify(formulario.value))
-      .map(res => res)
+      
       .subscribe(dados => {
         console.log(dados);
         formulario.form.reset();
       });
   }
 
-  constructor(private http: Http, private cepService: ConsultaCepService) { }
+  constructor(private http: HttpClient, private cepService: ConsultaCepService) { }
 
   ngOnInit() {
   }

@@ -1,9 +1,10 @@
-import { Http } from '@angular/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { map, filter, scan } from 'rxjs/operators';
 
 @Injectable()
 export class ConsultaCepService {
-  constructor(private http: Http) {}
+  constructor(private http: HttpClient) {}
 
   consultaCEP(cep, resetaFormCallback, formulario) {
     //Nova variável "cep" somente com dígitos.
@@ -19,8 +20,7 @@ export class ConsultaCepService {
         resetaFormCallback(formulario);
 
         return this.http
-          .get(`//viacep.com.br/ws/${cep}/json`)
-          .map(dados => dados.json());
+          .get(`//viacep.com.br/ws/${cep}/json`);
       }
     }
   }

@@ -1,7 +1,7 @@
 import { ConsultaCepService } from './../shared/services/consulta-cep.service';
 import { EstadoBr } from './../shared/models/estado-br.model';
 import { DropdownService } from './../shared/services/dropdown.service';
-import { Http } from '@angular/http';
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import {
   FormGroup,
@@ -9,6 +9,8 @@ import {
   FormBuilder,
   Validators
 } from '@angular/forms';
+
+import { map, filter, scan } from 'rxjs/operators';
 
 @Component({
   selector: 'app-data-form',
@@ -21,13 +23,13 @@ export class DataFormComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private http: Http,
+    private http: HttpClient,
     private dropdownService: DropdownService,
     private cepService: ConsultaCepService
   ) {}
 
   ngOnInit() {
-    this.dropdownService.getEstadosBr().subscribe(dados => {
+     this.dropdownService.getEstadosBr().subscribe(dados => {
       this.estados = dados;
       console.log(dados);
     });
@@ -66,7 +68,7 @@ export class DataFormComponent implements OnInit {
     if (this.formulario.valid) {
       this.http
         .post('https://httpbin.org/post', JSON.stringify(this.formulario.value))
-        .map(res => res)
+        .pipe(map(res => res))
         .subscribe(
           dados => {
             console.log(dados);
