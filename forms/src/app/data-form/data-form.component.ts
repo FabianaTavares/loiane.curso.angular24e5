@@ -11,6 +11,7 @@ import {
 } from '@angular/forms';
 
 import { map, filter, scan } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-data-form',
@@ -19,7 +20,8 @@ import { map, filter, scan } from 'rxjs/operators';
 })
 export class DataFormComponent implements OnInit {
   formulario: FormGroup;
-  estados: EstadoBr[];
+  //estados: EstadoBr[];
+  estados: Observable<EstadoBr[]>;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -29,10 +31,14 @@ export class DataFormComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-     this.dropdownService.getEstadosBr().subscribe(dados => {
+
+    this.estados = this.dropdownService.getEstadosBr();
+
+    /*  this.dropdownService.getEstadosBr().subscribe(dados => {
       this.estados = dados;
       console.log(dados);
-    });
+    }); */
+
 
     /*this.formulario = new FormGroup({
       nome: new FormControl(null),
