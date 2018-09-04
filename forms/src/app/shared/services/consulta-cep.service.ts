@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map, filter, scan } from 'rxjs/operators';
+import { of } from 'rxjs';
 
 @Injectable()
 export class ConsultaCepService {
@@ -11,7 +12,7 @@ export class ConsultaCepService {
     cep = cep.replace(/\D/g, '');
 
     //Verifica se campo cep possui valor informado.
-    if (cep != '') {
+    if (cep !== '') {
       //Expressão regular para validar o CEP.
       var validacep = /^[0-9]{8}$/;
 
@@ -23,5 +24,7 @@ export class ConsultaCepService {
           .get(`//viacep.com.br/ws/${cep}/json`);
       }
     }
+
+    return of({}); //retorna algo caso o cep seja valido ou não
   }
 }
