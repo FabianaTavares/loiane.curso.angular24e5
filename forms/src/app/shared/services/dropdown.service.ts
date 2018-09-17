@@ -19,4 +19,13 @@ export class DropdownService {
     ];
   }
 
+  getTecnologias(){
+    return [
+      { nome: 'Java', desc: 'Java' },
+      { nome: 'javascript', desc: 'Javascript' },
+      { nome: 'php', desc: 'PHP' },
+      { nome: 'ruby', desc: 'Ruby' }
+    ];
+  }
+
 }
