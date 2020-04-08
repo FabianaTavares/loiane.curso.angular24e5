@@ -1,22 +1,22 @@
-import { ConsultaCepService } from './../shared/services/consulta-cep.service';
-import { EstadoBr } from './../shared/models/estado-br.model';
-import { DropdownService } from './../shared/services/dropdown.service';
-import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { ConsultaCepService } from "./../shared/services/consulta-cep.service";
+import { EstadoBr } from "./../shared/models/estado-br.model";
+import { DropdownService } from "./../shared/services/dropdown.service";
+import { HttpClient } from "@angular/common/http";
+import { Component, OnInit } from "@angular/core";
 import {
   FormGroup,
   FormControl,
   FormBuilder,
-  Validators
-} from '@angular/forms';
+  Validators,
+} from "@angular/forms";
 
-import { map, filter, scan } from 'rxjs/operators';
-import { Observable } from 'rxjs';
+import { map, filter, scan } from "rxjs/operators";
+import { Observable } from "rxjs";
 
 @Component({
-  selector: 'app-data-form',
-  templateUrl: './data-form.component.html',
-  styleUrls: ['./data-form.component.css']
+  selector: "app-data-form",
+  templateUrl: "./data-form.component.html",
+  styleUrls: ["./data-form.component.css"],
 })
 export class DataFormComponent implements OnInit {
   formulario: FormGroup;
@@ -33,7 +33,6 @@ export class DataFormComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-
     this.estados = this.dropdownService.getEstadosBr();
     this.cargos = this.dropdownService.getCargos();
     this.tecnologias = this.dropdownService.getTecnologias();
@@ -42,7 +41,6 @@ export class DataFormComponent implements OnInit {
       this.estados = dados;
       console.log(dados);
     }); */
-
 
     /*this.formulario = new FormGroup({
       nome: new FormControl(null),
@@ -63,15 +61,15 @@ export class DataFormComponent implements OnInit {
         rua: [null, Validators.required],
         bairro: [null, Validators.required],
         cidade: [null, Validators.required],
-        estado: [null, Validators.required]
+        estado: [null, Validators.required],
       }),
 
       cargo: [null],
-      tecnologias: [null]
+      tecnologias: [null],
     });
 
     // tslint:disable-next-line:max-line-length
-    // Validators.pattern("[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?")
+    // Validators.pattern('[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?')
     // [Validators.required, Validators.minLength(3), Validators.maxLength(20)]
   }
 
@@ -80,25 +78,25 @@ export class DataFormComponent implements OnInit {
 
     if (this.formulario.valid) {
       this.http
-        .post('https://httpbin.org/post', JSON.stringify(this.formulario.value))
-        .pipe(map(res => res))
+        .post("https://httpbin.org/post", JSON.stringify(this.formulario.value))
+        .pipe(map((res) => res))
         .subscribe(
-          dados => {
+          (dados) => {
             console.log(dados);
             // reseta o form
             // this.formulario.reset();
             // this.resetar();
           },
-          (error: any) => alert('erro')
+          (error: any) => alert("erro")
         );
     } else {
-      console.log('formulario invalido');
+      console.log("formulario invalido");
       this.verificaValidacoesForm(this.formulario);
     }
   }
 
   verificaValidacoesForm(formGroup: FormGroup) {
-    Object.keys(formGroup.controls).forEach(campo => {
+    Object.keys(formGroup.controls).forEach((campo) => {
       console.log(campo);
       const controle = formGroup.get(campo);
       controle.markAsDirty();
@@ -120,23 +118,24 @@ export class DataFormComponent implements OnInit {
   }
 
   verificaEmailInvalido() {
-    const campoEmail = this.formulario.get('email');
+    const campoEmail = this.formulario.get("email");
     if (campoEmail.errors) {
-      return campoEmail.errors['email'] && campoEmail.touched;
+      return campoEmail.errors["email"] && campoEmail.touched;
     }
   }
 
   aplicaCssErro(campo: string) {
     return {
-      'has-error': this.verificaValidTouched(campo),
-      'has-feedback': this.verificaValidTouched(campo)
+      "has-error": this.verificaValidTouched(campo),
+      "has-feedback": this.verificaValidTouched(campo),
     };
   }
 
   consultaCEP() {
-    const cep = this.formulario.get('endereco.cep').value;
-    this.cepService.consultaCEP(cep, this.resetaDadosForm, this.formulario)
-      .subscribe(dados => this.populaDadosForm(dados));
+    const cep = this.formulario.get("endereco.cep").value;
+    this.cepService
+      .consultaCEP(cep, this.resetaDadosForm, this.formulario)
+      .subscribe((dados) => this.populaDadosForm(dados));
   }
 
   populaDadosForm(dados) {
@@ -148,11 +147,11 @@ export class DataFormComponent implements OnInit {
         complemento: dados.complemento,
         bairro: dados.bairro,
         cidade: dados.localidade,
-        estado: dados.uf
-      }
+        estado: dados.uf,
+      },
     });
 
-    this.formulario.get('nome').setValue('Loiane');
+    this.formulario.get("nome").setValue("Loiane");
 
     // console.log(form);
   }
@@ -164,26 +163,29 @@ export class DataFormComponent implements OnInit {
         complemento: null,
         bairro: null,
         cidade: null,
-        estado: null
-      }
+        estado: null,
+      },
     });
-  };
+  }
 
   setarCargo() {
-    const cargo = { nome: 'DEV', nivel: 'Pleno', desc: 'Dev Pl' };
-    this.formulario.get('cargo').setValue(cargo);
+    const cargo = { nome: "DEV", nivel: "Pleno", desc: "Dev Pl" };
+    this.formulario.get("cargo").setValue(cargo);
   }
 
   compararCargos(obj1, obj2) {
-    return obj1 && obj2 ? (obj1.nome === obj2.nome && obj1.nivel === obj2.nivel) : obj1 === obj2;
+    return obj1 && obj2
+      ? obj1.nome === obj2.nome && obj1.nivel === obj2.nivel
+      : obj1 === obj2;
   }
 
   setarTecnologias() {
-    this.formulario.get('tecnologias').setValue(['java', 'javascript', 'php']);
+    this.formulario.get("tecnologias").setValue(["java", "javascript", "php"]);
   }
 
   compararTecnologias(obj1, obj2) {
-    return obj1 && obj2 ? (obj1.nome === obj2.nome && obj1.nivel === obj2.nivel) : obj1 === obj2;
+    return obj1 && obj2
+      ? obj1.nome === obj2.nome && obj1.nivel === obj2.nivel
+      : obj1 === obj2;
   }
-
 }
