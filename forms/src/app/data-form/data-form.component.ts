@@ -20,7 +20,7 @@ import { Observable } from 'rxjs';
 })
 export class DataFormComponent implements OnInit {
   formulario: FormGroup;
-  //estados: EstadoBr[];
+  // estados: EstadoBr[];
   estados: Observable<EstadoBr[]>;
   cargos: any[];
   tecnologias: any[];
@@ -134,13 +134,13 @@ export class DataFormComponent implements OnInit {
   }
 
   consultaCEP() {
-    let cep = this.formulario.get('endereco.cep').value;
+    const cep = this.formulario.get('endereco.cep').value;
     this.cepService.consultaCEP(cep, this.resetaDadosForm, this.formulario)
       .subscribe(dados => this.populaDadosForm(dados));
   }
 
   populaDadosForm(dados) {
-    //this.formulario.setValue({});
+    // this.formulario.setValue({});
     this.formulario.patchValue({
       endereco: {
         rua: dados.logradouro,
@@ -169,20 +169,21 @@ export class DataFormComponent implements OnInit {
     });
   };
 
-  setarCargo(){
-    const cargo = { nome:'DEV', nivel: 'Pleno', desc: 'Dev Pl' };
+  setarCargo() {
+    const cargo = { nome: 'DEV', nivel: 'Pleno', desc: 'Dev Pl' };
     this.formulario.get('cargo').setValue(cargo);
   }
 
-  compararCargos(obj1, obj2){
-    return obj1 && obj2 ? (obj1.nome === obj2.nome && obj1.nivel === obj2.nivel) : obj1 === obj2 ; 
+  compararCargos(obj1, obj2) {
+    return obj1 && obj2 ? (obj1.nome === obj2.nome && obj1.nivel === obj2.nivel) : obj1 === obj2;
   }
 
-  setarTecnologias(){
+  setarTecnologias() {
     this.formulario.get('tecnologias').setValue(['java', 'javascript', 'php']);
-  } 
-
-  compararTecnologias(obj1, obj2){
-    return obj1 && obj2 ? (obj1.nome === obj2.nome && obj1.nivel === obj2.nivel) : obj1 === obj2 ; 
   }
+
+  compararTecnologias(obj1, obj2) {
+    return obj1 && obj2 ? (obj1.nome === obj2.nome && obj1.nivel === obj2.nivel) : obj1 === obj2;
+  }
+
 }
