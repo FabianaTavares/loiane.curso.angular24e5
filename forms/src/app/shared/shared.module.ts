@@ -6,6 +6,7 @@ import { CampoControlErrorComponent } from './campo-control-error/campo-control-
 import { FormDebugComponent } from './form-debug/form-debug.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { ErrorMsgComponent } from './error-msg/error-msg.component';
 
 @NgModule({
   imports: [
@@ -16,7 +17,8 @@ import { CommonModule } from '@angular/common';
   ],
   declarations: [
     FormDebugComponent,
-    CampoControlErrorComponent
+    CampoControlErrorComponent,
+    ErrorMsgComponent
   ],
   exports: [
     CommonModule,
@@ -24,8 +26,9 @@ import { CommonModule } from '@angular/common';
     FormsModule,
     ReactiveFormsModule,
     FormDebugComponent,
-    CampoControlErrorComponent
+    CampoControlErrorComponent,
+    ErrorMsgComponent
   ],
-  providers: [ DropdownService, ConsultaCepService ]
+  providers: [DropdownService, ConsultaCepService]
 })
 export class SharedModule { }

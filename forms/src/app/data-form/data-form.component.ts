@@ -13,8 +13,8 @@ import {
   FormArray,
 } from '@angular/forms';
 
-import { map, filter, scan } from 'rxjs/operators';
-import { Observable } from 'rxjs';
+import { map, filter, scan, tap, distinctUntilChanged, switchMap } from 'rxjs/operators';
+import { Observable, empty } from 'rxjs';
 
 @Component({
   selector: 'app-data-form',
@@ -58,7 +58,7 @@ export class DataFormComponent implements OnInit {
     });*/
 
     this.formulario = this.formBuilder.group({
-      nome: [null, Validators.required],
+      nome: [null, [Validators.required, Validators.minLength(3)]],
       email: [null, [Validators.required, Validators.email], [this.validarEmail.bind(this)]],
 
       endereco: this.formBuilder.group({
@@ -75,6 +75,18 @@ export class DataFormComponent implements OnInit {
       tecnologias: [null],
       frameworks: this.buildFramworks(),
     });
+
+    this.formulario.get('endereco.cep').statusChanges
+      .pipe(
+        distinctUntilChanged(),
+        tap(value => console.log('status CEP:', value)),
+        switchMap(status => status === 'VALID' ?
+          this.cepService.consultaCEP(this.formulario.get('endereco.cep').value, this.resetaDadosForm, this.formulario)
+          // tslint:disable-next-line: deprecation
+          : empty()
+        )
+      )
+      .subscribe(dados => dados ? this.populaDadosForm(dados) : {});
 
     // tslint:disable-next-line:max-line-length
     // Validators.pattern('[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?')
@@ -167,9 +179,12 @@ export class DataFormComponent implements OnInit {
 
   consultaCEP() {
     const cep = this.formulario.get('endereco.cep').value;
-    this.cepService
-      .consultaCEP(cep, this.resetaDadosForm, this.formulario)
-      .subscribe((dados) => this.populaDadosForm(dados));
+
+    if (cep != null && cep !== '') {
+      this.cepService
+        .consultaCEP(cep, this.resetaDadosForm, this.formulario)
+        .subscribe((dados) => this.populaDadosForm(dados));
+    }
   }
 
   populaDadosForm(dados) {
