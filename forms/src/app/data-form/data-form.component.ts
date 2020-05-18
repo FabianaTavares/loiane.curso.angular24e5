@@ -1,3 +1,5 @@
+import { Cidade } from './../shared/models/cidade.model';
+import { BaseFormComponent } from './../shared/base-form/base-form.component';
 import { VerificaEmailService } from './services/verifica-email.service';
 import { FormValidations } from './../shared/form-validations';
 import { ConsultaCepService } from './../shared/services/consulta-cep.service';
@@ -21,12 +23,14 @@ import { Observable, empty } from 'rxjs';
   templateUrl: './data-form.component.html',
   styleUrls: ['./data-form.component.css'],
 })
-export class DataFormComponent implements OnInit {
-  formulario: FormGroup;
-  // estados: EstadoBr[];
-  estados: Observable<EstadoBr[]>;
+export class DataFormComponent extends BaseFormComponent implements OnInit {
+
+  // formulario: FormGroup;
+  estados: EstadoBr[];
+  // estados: Observable<EstadoBr[]>;
   cargos: any[];
   tecnologias: any[];
+  cidades: Cidade[];
 
   frameworks = ['Angular', 'React', 'Vue', 'Sencha'];
 
@@ -36,11 +40,15 @@ export class DataFormComponent implements OnInit {
     private dropdownService: DropdownService,
     private cepService: ConsultaCepService,
     private verificaEmailService: VerificaEmailService
-  ) { }
+  ) {
+    super();
+  }
 
   ngOnInit() {
     // this.verificaEmailService.verificarEmail('email@email.com').subscribe();
-    this.estados = this.dropdownService.getEstadosBr();
+    // this.estados = this.dropdownService.getEstadosBr();
+    this.dropdownService.getEstadosBr()
+      .subscribe(dados => this.estados = dados);
     this.cargos = this.dropdownService.getCargos();
     this.tecnologias = this.dropdownService.getTecnologias();
 
@@ -88,6 +96,17 @@ export class DataFormComponent implements OnInit {
       )
       .subscribe(dados => dados ? this.populaDadosForm(dados) : {});
 
+    this.formulario.get('endereco.estado').valueChanges
+      .pipe(
+        tap(estado => console.log('Novo estado: ', estado)),
+        map(estado => this.estados.filter(e => e.sigla === estado)),
+        // tslint:disable-next-line: deprecation
+        map(estados => estados && estados.length > 0 ? estados[0].id : empty()),
+        switchMap((estadoId: number) => this.dropdownService.getCidades(estadoId)),
+        tap(console.log)
+      )
+      .subscribe(cidades => this.cidades = cidades);
+
     // tslint:disable-next-line:max-line-length
     // Validators.pattern('[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?')
     // [Validators.required, Validators.minLength(3), Validators.maxLength(20)]
@@ -101,7 +120,7 @@ export class DataFormComponent implements OnInit {
     );
   }
 
-  onSubmit() {
+  submit() {
     console.log(this.formulario);
 
     // fazendo copia do formulario para a variavel
@@ -115,66 +134,18 @@ export class DataFormComponent implements OnInit {
 
     console.log(valueSubmit);
 
-    if (this.formulario.valid) {
-      this.http
-        .post('https://httpbin.org/post', JSON.stringify(this.formulario.value))
-        .pipe(map((res) => res))
-        .subscribe(
-          (dados) => {
-            console.log(dados);
-            // reseta o form
-            // this.formulario.reset();
-            // this.resetar();
-          },
-          (error: any) => alert('erro')
-        );
-    } else {
-      console.log('formulario invalido');
-      this.verificaValidacoesForm(this.formulario);
-    }
-  }
-
-  verificaValidacoesForm(formGroup: FormGroup) {
-    Object.keys(formGroup.controls).forEach((campo) => {
-      console.log(campo);
-      const controle = formGroup.get(campo);
-      controle.markAsDirty();
-      if (controle instanceof FormGroup) {
-        this.verificaValidacoesForm(controle);
-      }
-    });
-  }
-
-  resetar() {
-    this.formulario.reset();
-  }
-
-  verificaValidTouched(campo: string) {
-    return (
-      !this.formulario.get(campo).valid &&
-      (this.formulario.get(campo).touched || this.formulario.get(campo).dirty)
-    );
-  }
-
-  verificaRequired(campo: string) {
-    return (
-      this.formulario.get(campo).hasError('required') &&
-      (this.formulario.get(campo).touched || this.formulario.get(campo).dirty)
-    );
-  }
-
-  verificaEmailInvalido() {
-    const campoEmail = this.formulario.get('email');
-    if (campoEmail.errors) {
-      return campoEmail.errors['email'] && campoEmail.touched;
-    }
-  }
-
-  aplicaCssErro(campo: string) {
-    return {
-      'has-error': this.verificaValidTouched(campo),
-      'has-feedback': this.verificaValidTouched(campo),
-    };
+    this.http
+      .post('https://httpbin.org/post', JSON.stringify(this.formulario.value))
+      .pipe(map((res) => res))
+      .subscribe(
+        (dados) => {
+          console.log(dados);
+          // reseta o form
+          // this.formulario.reset();
+          // this.resetar();
+        },
+        (error: any) => alert('erro')
+      );
   }
 
   consultaCEP() {
@@ -242,4 +213,5 @@ export class DataFormComponent implements OnInit {
     return this.verificaEmailService.verificarEmail(formControl.value)
       .pipe(map(emailExiste => emailExiste ? { emailInvalido: true } : null));
   }
+
 }

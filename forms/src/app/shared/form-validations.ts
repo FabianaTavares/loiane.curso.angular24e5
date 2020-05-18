@@ -29,7 +29,7 @@ export class FormValidations {
     return null;
   }
 
-  static getErrorMessage(fieldName: string, validatorName: string, validatorValue?: any){
+  static getErrorMessage(fieldName: string, validatorName: string, validatorValue?: any) {
     const config = {
       'required': `${fieldName} é obrigatório.`,
       'minlength': `${fieldName} precisa ter no mínimo ${validatorValue.requiredLength} caracteres.`,

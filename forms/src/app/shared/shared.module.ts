@@ -7,6 +7,7 @@ import { FormDebugComponent } from './form-debug/form-debug.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ErrorMsgComponent } from './error-msg/error-msg.component';
+import { InputFieldComponent } from './input-field/input-field.component';
 
 @NgModule({
   imports: [
@@ -18,7 +19,8 @@ import { ErrorMsgComponent } from './error-msg/error-msg.component';
   declarations: [
     FormDebugComponent,
     CampoControlErrorComponent,
-    ErrorMsgComponent
+    ErrorMsgComponent,
+    InputFieldComponent
   ],
   exports: [
     CommonModule,
@@ -27,7 +29,8 @@ import { ErrorMsgComponent } from './error-msg/error-msg.component';
     ReactiveFormsModule,
     FormDebugComponent,
     CampoControlErrorComponent,
-    ErrorMsgComponent
+    ErrorMsgComponent,
+    InputFieldComponent
   ],
   providers: [DropdownService, ConsultaCepService]
 })

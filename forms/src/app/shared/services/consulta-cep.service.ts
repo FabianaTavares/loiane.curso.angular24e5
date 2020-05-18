@@ -1,18 +1,18 @@
-import { HttpClient } from "@angular/common/http";
-import { Injectable } from "@angular/core";
-import { map, filter, scan } from "rxjs/operators";
-import { of } from "rxjs";
+import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { map, filter, scan } from 'rxjs/operators';
+import { of } from 'rxjs';
 
 @Injectable()
 export class ConsultaCepService {
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   consultaCEP(cep, resetaFormCallback, formulario) {
     // Nova variável "cep" somente com dígitos.
-    cep = cep.replace(/\D/g, "");
+    cep = cep.replace(/\D/g, '');
 
     // Verifica se campo cep possui valor informado.
-    if (cep !== "") {
+    if (cep !== '') {
       // Expressão regular para validar o CEP.
       // tslint:disable-next-line:prefer-const
       let validacep = /^[0-9]{8}$/;
