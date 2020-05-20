@@ -23,7 +23,27 @@ export class CursosService {
       );
   }
 
-  create(curso) {
+  loadByID(id) {
+    return this.http.get<Curso>(`${this.API}/${id}`).pipe(take(1));
+  }
+
+  private create(curso) {
     return this.http.post(this.API, curso).pipe(take(1));
   }
+
+  private update(curso) {
+    return this.http.put(`${this.API}/${curso.id}`, curso).pipe(take(1));
+  }
+
+  save(curso) {
+    if (curso.id) {
+      return this.update(curso);
+    }
+    return this.create(curso);
+  }
+
+  remove(id) {
+    return this.http.delete(`${this.API}/${id}`).pipe(take(1));
+  }
+
 }
