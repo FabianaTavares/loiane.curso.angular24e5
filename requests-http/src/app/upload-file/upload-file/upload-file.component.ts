@@ -42,26 +42,40 @@ export class UploadFileComponent implements OnInit {
   onUpload() {
     if (this.files && this.files.size > 0) {
       this.service.upload(this.files, environment.BASE_URL + '/upload')
-      .pipe(
-        uploadProgress(progress => {
-          console.log(progress);
-          this.progress = progress;
-        }),
-        filterResponse()
+        .pipe(
+          uploadProgress(progress => {
+            console.log(progress);
+            this.progress = progress;
+          }),
+          filterResponse()
         )
         .subscribe(Response => console.log('Upload Concluído'));
-        /* .subscribe((event: HttpEvent<Object>) => {
-          //HttpEventType
-          console.log(event);
-          if (event.type === HttpEventType.Response) {
-            console.log('upload concluido');
-          } else if (event.type === HttpEventType.UploadProgress) {
-            const percentDone = Math.round((event.loaded * 100) / event.total);
-            console.log('Progresso', percentDone);
-            this.progress = percentDone;
-          }
-        }); */
+      /* .subscribe((event: HttpEvent<Object>) => {
+        //HttpEventType
+        console.log(event);
+        if (event.type === HttpEventType.Response) {
+          console.log('upload concluido');
+        } else if (event.type === HttpEventType.UploadProgress) {
+          const percentDone = Math.round((event.loaded * 100) / event.total);
+          console.log('Progresso', percentDone);
+          this.progress = percentDone;
+        }
+      }); */
     }
+  }
+
+  onDownloadExcel() {
+    this.service.download(environment.BASE_URL + '/downloadExcel')
+      .subscribe((res: any) => {
+        this.service.handleFile(res, 'report.xlsx');
+      });
+  }
+
+  onDownloadPDF() {
+    this.service.download(environment.BASE_URL + '/downloadPdf')
+      .subscribe((res: any) => {
+        this.service.handleFile(res, 'report.pdf');
+      });
   }
 
 }
