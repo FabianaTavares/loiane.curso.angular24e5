@@ -2,7 +2,7 @@ import { Observable } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { tap, map } from 'rxjs/operators';
+import { tap, map, filter, distinctUntilChanged, debounce, debounceTime, switchMap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-lib-search',
@@ -16,12 +16,32 @@ export class LibSearchComponent implements OnInit {
   readonly SEARCH_URL = "https://api.cdnjs.com/libraries";
   results$: Observable<any>;
   total: number;
+  readonly FIELDS = 'name,filename,version,homepage';
 
   constructor(
     private http: HttpClient,
   ) { }
 
+  /**
+   * a ordem dos operadores faz diferente, é importante entender o papel de cada um.
+   */
   ngOnInit() {
+    this.results$ = this.queryField.valueChanges
+      .pipe(
+        map(value => value.trim()),
+        filter(value => value.length > 1),
+        debounceTime(200),
+        distinctUntilChanged(),
+        // tap(value => console.log(value)),
+        switchMap(value => this.http.get(this.SEARCH_URL, {
+          params: {
+            search: value,
+            fields: this.FIELDS
+          }
+        })),
+        tap((res: any) => this.total = res.total),
+        map((res: any) => res.results)
+      );
   }
 
   onSearch() {
