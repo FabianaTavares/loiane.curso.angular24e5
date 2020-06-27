@@ -1,0 +1,14 @@
+{
+  "projects": {
+    "default": "curso-angular-fabiana"
+  },
+  "targets": {
+    "curso-angular-fabiana": {
+      "hosting": {
+        "requests-http": [
+          "curso-angular-fabiana"
+        ]
+      }
+    }
+  }
+}
