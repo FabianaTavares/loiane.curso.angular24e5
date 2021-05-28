@@ -42,7 +42,7 @@
     "stringstream": "^1.0.0",
     "ts-helpers": "^1.1.1",
     "webpack-dev-server": "^3.10.3",
-    "ws": "^7.2.3",
+    "ws": "^7.4.5",
     "zone.js": "^0.7.2"
   },
   "devDependencies": {
