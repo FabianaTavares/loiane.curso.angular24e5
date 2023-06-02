@@ -1,20 +1,10 @@
 {
 	"name": "loiane.curso.angular24e5",
-	"version": "3.1.1",
-	"description": "",
+	"version": "3.1.0",
 	"scripts": {
 		"release": "standard-version"
 	},
-	"repository": {
-		"type": "git",
-		"url": "git+https://github.com/FabianaTavares/loiane.curso.angular24e5.git"
-	},
-	"author": "",
-	"license": "ISC",
-	"bugs": {
-		"url": "https://github.com/FabianaTavares/loiane.curso.angular24e5/issues"
-	},
-	"homepage": "https://github.com/FabianaTavares/loiane.curso.angular24e5#readme",
+	"private": true,
 	"devDependencies": {
 		"@angular/cli": "8.3.18",
 		"@commitlint/cli": "^17.6.5",
@@ -27,6 +17,9 @@
 		"commitizen": {
 			"path": "./node_modules/cz-conventional-changelog"
 		}
+	},
+	"repository": {
+		"url": "git@github.com:FabianaTavares/loiane.curso.angular24e5.git"
 	},
 	"husky": {
 		"hooks": {
