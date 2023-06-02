@@ -88,8 +88,10 @@
     "prefer-const": true,
     "quotemark": [
       true,
-      "double",
-      "avoid-escape"
+      "single",
+      "jsx-single",
+      "avoid-escape",
+      "avoid-template"
     ],
     "radix": true,
     "semicolon": [

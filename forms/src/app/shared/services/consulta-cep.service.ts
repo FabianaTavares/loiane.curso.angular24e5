@@ -5,7 +5,7 @@ import { of } from 'rxjs';
 
 @Injectable()
 export class ConsultaCepService {
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   consultaCEP(cep, resetaFormCallback, formulario) {
     // Nova variável "cep" somente com dígitos.
@@ -21,8 +21,7 @@ export class ConsultaCepService {
       if (validacep.test(cep)) {
         resetaFormCallback(formulario);
 
-        return this.http
-          .get(`//viacep.com.br/ws/${cep}/json`);
+        return this.http.get(`//viacep.com.br/ws/${cep}/json`);
       }
     }
 
