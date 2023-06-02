@@ -2,6 +2,24 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [5.0.0](https://github.com/FabianaTavares/loiane.curso.angular24e5/compare/v3.1.1...v5.0.0) (2023-06-02)
+
+
+### ⚠ BREAKING CHANGES
+
+* removendo pastas
+* teste
+* teste
+
+### Errors Corrigidos
+
+* teste ([c3c1f8a](https://github.com/FabianaTavares/loiane.curso.angular24e5/commit/c3c1f8a46bf61b521665ad125e8f95bfd00de956))
+
+
+* removendo pastas ([7470d9f](https://github.com/FabianaTavares/loiane.curso.angular24e5/commit/7470d9f39a0d817c053a9921ed4c19e0db1cde16))
+* teste ([58d0e70](https://github.com/FabianaTavares/loiane.curso.angular24e5/commit/58d0e702b910e0bd29cf8fb19433d3c3b8a380ee))
+* teste ([d160db6](https://github.com/FabianaTavares/loiane.curso.angular24e5/commit/d160db6e56a5473ce23ac3b8af1b15299343c2b3))
+
 ## [4.0.0](https://github.com/FabianaTavares/loiane.curso.angular24e5/compare/v3.1.1...v4.0.0) (2023-06-02)
 
 
