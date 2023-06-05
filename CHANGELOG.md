@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [5.1.0](https://github.com/FabianaTavares/loiane.curso.angular24e5/compare/v5.0.0...v5.1.0) (2023-06-05)
+
+
+### Funcionalidades
+
+* finalizando o readme ([674c30e](https://github.com/FabianaTavares/loiane.curso.angular24e5/commit/674c30e2bf59aec7a2ad328964fec0d396895de4))
+
 ## [5.0.0](https://github.com/FabianaTavares/loiane.curso.angular24e5/compare/v3.1.1...v5.0.0) (2023-06-02)
 
 
